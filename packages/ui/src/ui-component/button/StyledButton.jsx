@@ -3,7 +3,7 @@ import { Button } from '@mui/material'
 import MuiToggleButton from '@mui/material/ToggleButton'
 
 export const StyledButton = styled(Button)(({ theme, color = 'primary' }) => ({
-    color: 'white',
+    color: '#131313',
     backgroundColor: theme.palette[color].main,
     '&:hover': {
         backgroundColor: theme.palette[color].main,
@@ -13,7 +13,7 @@ export const StyledButton = styled(Button)(({ theme, color = 'primary' }) => ({
 
 export const StyledToggleButton = styled(MuiToggleButton)(({ theme, color = 'primary' }) => ({
     '&.Mui-selected, &.Mui-selected:hover': {
-        color: 'white',
+        color: '#131313',
         backgroundColor: theme.palette[color].main
     }
 }))
