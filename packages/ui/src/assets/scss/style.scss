@@ -4,28 +4,19 @@
 // third-party
 @import 'react-perfect-scrollbar/dist/css/styles.css';
 
-button,
-a,
-.MuiAvatar-root,
-.MuiPaper-root,
-*[role='button'],
-input,
-select,
-textarea,
-.MuiOutlinedInput-notchedOutline {
-    border-radius: 0 !important;
-}
-
-.MuiTable-root {
-    a,
-    button {
-        color: #131313 !important;
-    }
-}
-
 // ==============================|| LIGHT BOX ||============================== //
 .fullscreen .react-images__blanket {
     z-index: 1200;
+}
+
+input,
+a,
+button,
+select,
+textarea,
+.MuiInputBase-root .MuiOutlinedInput-notchedOutline,
+.MuiAvatar-rounded {
+    border-radius: 0 !important;
 }
 
 // ==============================|| PERFECT SCROLLBAR ||============================== //
@@ -41,7 +32,7 @@ textarea,
     }
     .ps__thumb-y {
         background-color: $grey500;
-        border-radius: 0;
+        border-radius: 6px;
         width: 5px;
         right: 0;
     }

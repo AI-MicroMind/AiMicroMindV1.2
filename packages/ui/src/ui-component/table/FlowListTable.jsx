@@ -172,7 +172,7 @@ export const FlowListTable = ({ data, images, isLoading, filterFunction, updateF
                                                 >
                                                     <Link
                                                         to={`/${isAgentCanvas ? 'agentcanvas' : 'canvas'}/${row.id}`}
-                                                        style={{ color: '#f6eb0f', textDecoration: 'none' }}
+                                                        style={{ color: '#aca90b', textDecoration: 'none' }}
                                                     >
                                                         {row.templateName || row.name}
                                                     </Link>
