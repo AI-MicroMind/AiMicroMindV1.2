@@ -6,7 +6,7 @@ export const TabsList = styled(BaseTabsList)(
     ({ theme, ...props }) => `
     min-width: 400px;
     background-color: ${props.sx?.backgroundColor || blue[500]};
-    border-radius: 20px;
+    border-radius: 0;
     margin-top: 16px;
     margin-bottom: 16px;
     display: flex;

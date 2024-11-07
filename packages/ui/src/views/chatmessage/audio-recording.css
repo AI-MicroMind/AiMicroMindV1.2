@@ -147,7 +147,7 @@
     .close-browser-not-supported-box {
         cursor: pointer;
         background-color: #abc1c05c;
-        border-radius: 10px;
+        border-radius: 0;
         font-size: 16px;
         border: none;
     }

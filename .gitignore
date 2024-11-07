@@ -2,7 +2,6 @@
 .idea
 .vscode
 README.md
-images
 
 # dependencies
 **/node_modules

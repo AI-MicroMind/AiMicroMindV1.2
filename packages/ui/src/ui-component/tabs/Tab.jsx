@@ -16,7 +16,7 @@ export const Tab = styled(BaseTab)(
   padding: 8px 12px;
   margin: 6px;
   border: none;
-  border-radius: 25px;
+  border-radius: 0;
   display: flex;
   justify-content: center;
 

@@ -4,6 +4,17 @@
 // third-party
 @import 'react-perfect-scrollbar/dist/css/styles.css';
 
+button,
+a,
+.MuiAvatar-root,
+.MuiPaper-root,
+*[role='button'],
+input,
+select,
+textarea {
+    border-radius: 0 !important;
+}
+
 // ==============================|| LIGHT BOX ||============================== //
 .fullscreen .react-images__blanket {
     z-index: 1200;
@@ -22,7 +33,7 @@
     }
     .ps__thumb-y {
         background-color: $grey500;
-        border-radius: 6px;
+        border-radius: 0;
         width: 5px;
         right: 0;
     }

@@ -1,7 +1,7 @@
 .messagelist {
     width: 100%;
     height: auto;
-    border-radius: 0.5rem;
+    border-radius: 0;
 }
 
 .messagelistloading {
@@ -96,7 +96,7 @@
 .usericon {
     margin-top: 1rem;
     margin-right: 1rem;
-    border-radius: 1rem;
+    border-radius: 0;
 }
 
 .markdownanswer h1,
@@ -163,7 +163,7 @@
     width: 100%;
     height: calc(100vh - 260px);
     overflow-y: scroll;
-    border-radius: 0.5rem;
+    border-radius: 0;
     display: flex;
     justify-content: center;
     align-items: center;
