@@ -25,7 +25,6 @@ import { StatusCodes } from 'http-status-codes'
 import { getErrorMessage } from '../errors/utils'
 import { v4 as uuidv4 } from 'uuid'
 import { FLOWISE_COUNTER_STATUS, FLOWISE_METRIC_COUNTERS } from '../Interface.Metrics'
-import { Variable } from '../database/entities/Variable'
 /**
  * Upsert documents
  * @param {Request} req
@@ -158,7 +157,6 @@ export const upsertVector = async (req: Request, isInternal: boolean = false) =>
         const { startingNodeIds, depthQueue } = getStartingNodes(filteredGraph, stopNodeId)
 
         /*** Get API Config ***/
-        const availableVariables = await appServer.AppDataSource.getRepository(Variable).find()
         const { nodeOverrides, variableOverrides, apiOverrideStatus } = getAPIOverrideConfig(chatflow)
 
         // For "files" input, add a new node override with the actual input name such as pdfFile, txtFile, etc.
@@ -191,7 +189,6 @@ export const upsertVector = async (req: Request, isInternal: boolean = false) =>
             overrideConfig: incomingInput?.overrideConfig,
             apiOverrideStatus,
             nodeOverrides,
-            availableVariables,
             variableOverrides,
             cachePool: appServer.cachePool,
             isUpsert,

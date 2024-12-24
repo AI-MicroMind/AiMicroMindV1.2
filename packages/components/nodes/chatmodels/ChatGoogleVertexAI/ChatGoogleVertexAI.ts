@@ -23,10 +23,6 @@ class ChatVertexAI extends LcChatVertexAI implements IVisionChatModal {
 
     constructor(id: string, fields?: ChatVertexAIInput) {
         // @ts-ignore
-        if (fields?.model) {
-            fields.modelName = fields.model
-            delete fields.model
-        }
         super(fields ?? {})
         this.id = id
         this.configuredModel = fields?.modelName || ''
@@ -65,7 +61,7 @@ class GoogleVertexAI_ChatModels implements INode {
     constructor() {
         this.label = 'ChatGoogleVertexAI'
         this.name = 'chatGoogleVertexAI'
-        this.version = 5.1
+        this.version = 5.0
         this.type = 'ChatGoogleVertexAI'
         this.icon = 'GoogleVertex.svg'
         this.category = 'Chat Models'
@@ -92,14 +88,6 @@ class GoogleVertexAI_ChatModels implements INode {
                 name: 'modelName',
                 type: 'asyncOptions',
                 loadMethod: 'listModels'
-            },
-            {
-                label: 'Custom Model Name',
-                name: 'customModelName',
-                type: 'string',
-                placeholder: 'gemini-1.5-pro-exp-0801',
-                description: 'Custom model name to use. If provided, it will override the model selected',
-                additionalParams: true
             },
             {
                 label: 'Temperature',
@@ -175,6 +163,7 @@ class GoogleVertexAI_ChatModels implements INode {
                 throw new Error(
                     'Error: More than one component has been inputted. Please use only one of the following: Google Application Credential File Path or Google Credential JSON Object'
                 )
+
             if (googleApplicationCredentialFilePath && !googleApplicationCredential)
                 authOptions.keyFile = googleApplicationCredentialFilePath
             else if (!googleApplicationCredentialFilePath && googleApplicationCredential)
@@ -185,7 +174,6 @@ class GoogleVertexAI_ChatModels implements INode {
 
         const temperature = nodeData.inputs?.temperature as string
         const modelName = nodeData.inputs?.modelName as string
-        const customModelName = nodeData.inputs?.customModelName as string
         const maxOutputTokens = nodeData.inputs?.maxOutputTokens as string
         const topP = nodeData.inputs?.topP as string
         const cache = nodeData.inputs?.cache as BaseCache
@@ -202,10 +190,11 @@ class GoogleVertexAI_ChatModels implements INode {
 
         const obj: ChatVertexAIInput = {
             temperature: parseFloat(temperature),
-            modelName: customModelName || modelName,
+            model: modelName,
             streaming: streaming ?? true
         }
         if (Object.keys(authOptions).length !== 0) obj.authOptions = authOptions
+
         if (maxOutputTokens) obj.maxOutputTokens = parseInt(maxOutputTokens, 10)
         if (topP) obj.topP = parseFloat(topP)
         if (cache) obj.cache = cache

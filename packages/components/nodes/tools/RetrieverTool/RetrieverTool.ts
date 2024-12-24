@@ -3,9 +3,10 @@ import { CallbackManager, CallbackManagerForToolRun, Callbacks, parseCallbackCon
 import { BaseDynamicToolInput, DynamicTool, StructuredTool, ToolInputParsingException } from '@langchain/core/tools'
 import { BaseRetriever } from '@langchain/core/retrievers'
 import { ICommonObject, INode, INodeData, INodeParams } from '../../../src/Interface'
-import { getBaseClasses, resolveFlowObjValue } from '../../../src/utils'
+import { getBaseClasses } from '../../../src/utils'
 import { SOURCE_DOCUMENTS_PREFIX } from '../../../src/agents'
 import { RunnableConfig } from '@langchain/core/runnables'
+import { customGet } from '../../sequentialagents/commonUtils'
 import { VectorStoreRetriever } from '@langchain/core/vectorstores'
 
 const howToUse = `Add additional filters to vector store. You can also filter with flow config, including the current "state":
@@ -198,7 +199,14 @@ class Retriever_Tools implements INode {
 
                 const metadatafilter =
                     typeof retrieverToolMetadataFilter === 'object' ? retrieverToolMetadataFilter : JSON.parse(retrieverToolMetadataFilter)
-                const newMetadataFilter = resolveFlowObjValue(metadatafilter, flowObj)
+                const newMetadataFilter: any = {}
+                for (const key in metadatafilter) {
+                    let value = metadatafilter[key]
+                    if (value.startsWith('$flow')) {
+                        value = customGet(flowObj, value)
+                    }
+                    newMetadataFilter[key] = value
+                }
 
                 const vectorStore = (retriever as VectorStoreRetriever<any>).vectorStore
                 vectorStore.filter = newMetadataFilter

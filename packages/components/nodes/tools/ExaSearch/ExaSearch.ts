@@ -116,14 +116,6 @@ class ExaSearch_Tools implements INode {
                     {
                         label: 'personal site',
                         name: 'personal site'
-                    },
-                    {
-                        label: 'linkedin profile',
-                        name: 'linkedin profile'
-                    },
-                    {
-                        label: 'financial report',
-                        name: 'financial report'
                     }
                 ],
                 optional: true,
