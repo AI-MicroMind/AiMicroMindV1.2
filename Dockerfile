@@ -24,7 +24,7 @@ WORKDIR /usr/src
 
 # Copy app source
 COPY . .
-
+RUN npm install express
 RUN pnpm install
 
 RUN pnpm build
